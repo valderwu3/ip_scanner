@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备IP管理与扫描</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>设备IP地址管理与扫描</h1>
+
+    <div class="container">
+        <h2>IP扫描</h2>
+        <input type="text" id="network-input" placeholder="例如, 192.168.1.0/24">
+        <button id="scan-btn">开始扫描</button>
+        <p id="scan-status"></p>
+    </div>
+
+    <div class="container">
+        <h2>设备管理</h2>
+        <table id="devices-table">
+            <thead>
+                <tr>
+                    <th>IP地址</th>
+                    <th>使用人员</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>用途</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="devices-tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 占用IP模态框 -->
+    <div id="occupy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>占用IP</h2>
+            <form id="occupy-form">
+                <input type="hidden" id="ip-address">
+                <label for="user">使用人员:</label>
+                <input type="text" id="user" name="user"><br>
+                <label for="start-time">开始时间:</label>
+                <input type="datetime-local" id="start-time" name="start-time"><br>
+                <label for="end-time">结束时间:</label>
+                <input type="datetime-local" id="end-time" name="end-time"><br>
+                <label for="purpose">用途:</label>
+                <textarea id="purpose" name="purpose"></textarea><br>
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/scripts.js"></script>
+</body>
+</html>

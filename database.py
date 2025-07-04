@@ -21,6 +21,8 @@ class Device(Base):
     start_time = Column(DateTime, nullable=True)
     end_time = Column(DateTime, nullable=True)
     purpose = Column(String, nullable=True)
+    device_type = Column(String, nullable=True)
+    first_offline_time = Column(DateTime, nullable=True)  # 新增：首次离线时间
 
 def get_db():
     db = SessionLocal()

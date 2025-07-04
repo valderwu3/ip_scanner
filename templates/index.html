@@ -1,56 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>设备IP管理与扫描</title>
+    <title>设备IP管理与扫描系统</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/all.min.css">
 </head>
 <body>
-    <h1>设备IP地址管理与扫描</h1>
-
-    <div class="container">
-        <h2>IP扫描</h2>
-        <input type="text" id="network-input" placeholder="例如, 192.168.1.0/24">
-        <button id="scan-btn">开始扫描</button>
-        <p id="scan-status"></p>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-network-wired"></i>
+                <h1>设备IP地址管理与扫描系统</h1>
+            </div>
+            <div class="header-info">
+                <span class="version">v1.0</span>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <h2>设备管理</h2>
-        <table id="devices-table">
-            <thead>
-                <tr>
-                    <th>IP地址</th>
-                    <th>使用人员</th>
-                    <th>开始时间</th>
-                    <th>结束时间</th>
-                    <th>用途</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody id="devices-tbody">
-            </tbody>
-        </table>
+    <div class="main-container">
+        <!-- IP扫描区域 -->
+        <div class="card scan-card">
+            <div class="card-header">
+                <i class="fas fa-search"></i>
+                <h2>网络扫描</h2>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-globe"></i>
+                        <input type="text" id="network-input" placeholder="请输入网段，例如: 192.168.1.0/24" class="network-input">
+                    </div>
+                    <button id="scan-btn" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        开始扫描
+                    </button>
+                </div>
+                <div id="scan-status" class="scan-status"></div>
+            </div>
+        </div>
+
+        <!-- 设备管理区域 -->
+        <div class="card devices-card">
+            <div class="card-header">
+                <i class="fas fa-desktop"></i>
+                <h2>设备管理</h2>
+                <div class="card-actions">
+                    <button class="btn btn-secondary btn-sm" onclick="loadOccupiedDevices()">
+                        <i class="fas fa-sync-alt"></i>
+                        刷新
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table id="devices-table" class="devices-table">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-network-wired"></i> IP地址</th>
+                                <th><i class="fas fa-user"></i> 使用人员</th>
+                                <th><i class="fas fa-clock"></i> 开始时间</th>
+                                <th><i class="fas fa-clock"></i> 结束时间</th>
+                                <th><i class="fas fa-tag"></i> 用途</th>
+                                <th><i class="fas fa-laptop"></i> 设备类型</th>
+                                <th><i class="fas fa-cogs"></i> 操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="devices-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- 占用IP模态框 -->
     <div id="occupy-modal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>占用IP</h2>
-            <form id="occupy-form">
-                <input type="hidden" id="ip-address">
-                <label for="user">使用人员:</label>
-                <input type="text" id="user" name="user"><br>
-                <label for="start-time">开始时间:</label>
-                <input type="datetime-local" id="start-time" name="start-time"><br>
-                <label for="end-time">结束时间:</label>
-                <input type="datetime-local" id="end-time" name="end-time"><br>
-                <label for="purpose">用途:</label>
-                <textarea id="purpose" name="purpose"></textarea><br>
-                <button type="submit">保存</button>
-            </form>
+            <div class="modal-header">
+                <h2><i class="fas fa-plus-circle"></i> 占用IP地址</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="occupy-form">
+                    <input type="hidden" id="ip-address">
+                    
+                    <div class="form-group">
+                        <label for="user">
+                            <i class="fas fa-user"></i>
+                            使用人员
+                        </label>
+                        <input type="text" id="user" name="user" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-time">
+                                <i class="fas fa-calendar-alt"></i>
+                                开始时间
+                            </label>
+                            <input type="datetime-local" id="start-time" name="start-time" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end-time">
+                                <i class="fas fa-calendar-alt"></i>
+                                结束时间
+                            </label>
+                            <input type="datetime-local" id="end-time" name="end-time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">
+                            <i class="fas fa-tag"></i>
+                            用途说明
+                        </label>
+                        <textarea id="purpose" name="purpose" rows="3" placeholder="请描述设备用途..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="device-type">
+                            <i class="fas fa-laptop"></i>
+                            设备类型
+                        </label>
+                        <input type="text" id="device-type" name="device-type" placeholder="例如: 服务器、工作站、路由器等">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('occupy-modal').style.display='none'">
+                            <i class="fas fa-times"></i>
+                            取消
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            保存
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

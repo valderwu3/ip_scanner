@@ -1,136 +1,934 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-}
-
-h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
     color: #333;
+    line-height: 1.6;
 }
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+/* 头部样式 */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-input[type="text"], button {
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-button {
-    cursor: pointer;
-    background-color: #007bff;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo i {
+    font-size: 2rem;
+    color: #667eea;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.header-info .version {
+    background: #667eea;
     color: white;
-    border-color: #007bff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* 主容器 - 增加最大宽度 */
+.main-container {
+    max-width: 1400px; /* 从1200px增加到1400px */
+    margin: 2rem auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-#scan-status {
-    margin-top: 10px;
-    font-style: italic;
-    color: #555;
+/* 卡片样式 */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-table {
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header i {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+}
+
+.card-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* 输入组样式 */
+.input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+}
+
+.input-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.network-input {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+.network-input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-th {
-    background-color: #f2f2f2;
+/* 按钮样式 */
+.btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* 设备操作按钮共享样式 - 添加固定宽度 */
+.occupy-btn,
+.occupied-btn {
+    width: 80px; /* 添加固定宽度 */
+    justify-content: center; /* 内容居中 */
+    text-align: center; /* 文本居中 */
+}
+
+/* 模态框样式 */
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    background: white;
+    margin: 2vh auto;
+    border-radius: 16px;
+    width: 90%;
     max-width: 500px;
-    border-radius: 8px;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
     font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
     cursor: pointer;
-}
-
-.modal-content input {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.offline-row {
-    color: #999 !important;
-    background-color: #f5f5f5 !important;
-}
-
-.offline-row td {
-    color: #999 !important;
-}
-
-.occupy-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 5px 10px;
+    transition: color 0.2s ease;
+    background: none;
     border: none;
-    border-radius: 3px;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.close:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group label i {
+    color: #667eea;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e1e8ed;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 1vh auto;
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+}
+
+.network-input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* 设备操作按钮共享样式 - 添加固定宽度 */
+.occupy-btn,
+.occupied-btn {
+    width: 80px; /* 添加固定宽度 */
+    justify-content: center; /* 内容居中 */
+    text-align: center; /* 文本居中 */
+}
+
+/* 设备操作按钮样式 - 未占用设备 */
+.occupy-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 0.4rem 0.8rem; /* 从0.6rem 1.2rem减小到0.4rem 0.8rem */
+    border: none;
+    border-radius: 6px; /* 从8px减小到6px */
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem; /* 从0.9rem减小到0.8rem */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.25); /* 减小阴影 */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* 从0.4rem减小到0.3rem */
+    white-space: nowrap;
+}
+
+.occupy-btn:before {
+    content: "\f067"; /* Font Awesome plus icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.7rem; /* 从0.8rem减小到0.7rem */
 }
 
 .occupy-btn:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+    transform: translateY(-1px); /* 从-2px减小到-1px */
+    box-shadow: 0 3px 8px rgba(40, 167, 69, 0.3); /* 减小悬停阴影 */
 }
 
+.occupy-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.25);
+}
+
+/* 设备操作按钮样式 - 已占用设备 */
 .occupied-btn {
-    background-color: #f44336;
+    background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
     color: white;
-    padding: 5px 10px;
+    padding: 0.4rem 0.8rem; /* 从0.6rem 1.2rem减小到0.4rem 0.8rem */
     border: none;
-    border-radius: 3px;
+    border-radius: 6px; /* 从8px减小到6px */
     cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem; /* 从0.9rem减小到0.8rem */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.25); /* 减小阴影 */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem; /* 从0.4rem减小到0.3rem */
+    white-space: nowrap;
+}
+
+.occupied-btn:before {
+    content: "\f023"; /* Font Awesome lock icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.7rem; /* 从0.8rem减小到0.7rem */
 }
 
 .occupied-btn:hover {
-    background-color: #da190b;
+    background: linear-gradient(135deg, #c82333 0%, #dc2626 100%);
+    transform: translateY(-1px); /* 从-2px减小到-1px */
+    box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3); /* 减小悬停阴影 */
+}
+
+.occupied-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.25);
+}
+
+/* 表格行状态样式 */
+.devices-table tbody tr.online {
+    background: rgba(40, 167, 69, 0.05);
+    border-left: 4px solid #28a745;
+}
+
+.devices-table tbody tr.occupied {
+    background: rgba(220, 53, 69, 0.05);
+    border-left: 4px solid #dc3545;
+}
+
+.devices-table tbody tr.online.occupied {
+    background: rgba(255, 152, 0, 0.05);
+    border-left: 4px solid #ff9800;
+}
+
+.offline-row {
+    background: #f8f9fa !important;
+    opacity: 0.7;
+    border-left: 4px solid #6c757d !important;
+}
+
+.offline-row td {
+    color: #6c757d;
+}
+
+/* 状态指示器增强 */
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+    position: relative;
+}
+
+.status-indicator:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 2s infinite;
+}
+
+.status-online {
+    background: #28a745;
+}
+
+.status-online:before {
+    background: #28a745;
+}
+
+.status-offline {
+    background: #6c757d;
+}
+
+.status-offline:before {
+    background: #6c757d;
+    animation: none;
+}
+
+.status-occupied {
+    background: #dc3545;
+}
+
+.status-occupied:before {
+    background: #dc3545;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
+/* 按钮组合样式 */
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* 表格样式 - 修改容器样式以支持悬浮框 */
+.table-container {
+    overflow-x: auto;
+    overflow-y: visible; /* 添加这行，允许垂直方向溢出 */
+    border-radius: 12px;
+    border: 1px solid #e1e8ed;
+    margin: 0 auto;
+    width: 100%;
+    position: relative; /* 添加相对定位 */
+}
+
+/* 设备类型悬浮提示样式 - 修改z-index和定位 */
+.device-type-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.device-type-name {
+    color: #667eea;
+    font-weight: 500;
+    border-bottom: 1px dotted #667eea;
+    transition: color 0.3s ease;
+}
+
+.device-type-name:hover {
+    color: #764ba2;
+}
+
+.device-tooltip {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    white-space: pre-line;
+    min-width: 250px;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.device-tooltip::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 100%;
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* 当悬浮框显示在下方时的箭头样式 */
+.device-tooltip.tooltip-bottom::after {
+    top: -12px;
+    border-top-color: transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.9);
+}
+
+.device-type-container:hover .device-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 删除重复的样式定义 */
+/* 注释掉或删除第669行开始的重复.device-tooltip定义 */
+/*
+.device-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    // ... 其他样式
+}
+*/
+
+.device-type-container:hover .device-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 确保所有父容器都允许溢出 */
+.table-container {
+    overflow: visible !important;
+}
+
+.card-body {
+    overflow: visible !important;
+}
+
+.devices-card {
+    overflow: visible !important;
+}
+
+.main-container {
+    overflow: visible !important;
+}
+
+body {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.devices-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin: 0 auto;
+    table-layout: fixed;
+    overflow: visible;
+}
+
+.devices-table td {
+    position: relative;
+    overflow: visible;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+.devices-table tbody tr {
+    transition: background-color 0.2s ease;
+    overflow: visible;
+}
+
+/* 确保整个表格支持溢出 */
+.devices-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin: 0 auto;
+    table-layout: fixed;
+    overflow: visible; /* 添加这行 */
+}
+
+.devices-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin: 0 auto; /* 表格居中 */
+    table-layout: fixed; /* 固定表格布局以便控制列宽 */
+}
+
+/* 表格列宽设置 */
+.devices-table th:nth-child(1), /* IP地址 */
+.devices-table td:nth-child(1) {
+    width: 12%;
+}
+
+.devices-table th:nth-child(2), /* 使用人员 */
+.devices-table td:nth-child(2) {
+    width: 12%;
+}
+
+.devices-table th:nth-child(3), /* 开始时间 */
+.devices-table td:nth-child(3) {
+    width: 15%;
+}
+
+.devices-table th:nth-child(4), /* 结束时间 */
+.devices-table td:nth-child(4) {
+    width: 15%;
+}
+
+.devices-table th:nth-child(5), /* 用途 */
+.devices-table td:nth-child(5) {
+    width: 20%;
+}
+
+.devices-table th:nth-child(6), /* 设备类型 - 增加宽度 */
+.devices-table td:nth-child(6) {
+    width: 16%;
+}
+
+.devices-table th:nth-child(7), /* 操作 */
+.devices-table td:nth-child(7) {
+    width: 10%;
+    text-align: center;
+}
+
+.devices-table th {
+    background: linear-gradient(135deg, #f8fafc 0%, #e1e8ed 100%);
+    color: #2c3e50;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e1e8ed;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.devices-table th i {
+    margin-right: 0.5rem;
+    color: #667eea;
+}
+
+.devices-table td {
+    padding: 0.8rem 1rem; /* 减少内边距 */
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.devices-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.devices-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* 响应式按钮调整 */
+@media (max-width: 768px) {
+    .occupy-btn,
+    .occupied-btn {
+        padding: 0.3rem 0.6rem; /* 移动端进一步缩小 */
+        font-size: 0.75rem;
+        width: 70px; /* 移动端减小按钮宽度 */
+    }
+    
+    .occupy-btn:before,
+    .occupied-btn:before {
+        font-size: 0.6rem;
+    }
+    
+    /* 移动端表格列宽调整 */
+    .devices-table th:nth-child(6), /* 设备类型 */
+    .devices-table td:nth-child(6) {
+        width: 18%; /* 移动端增加设备类型列宽 */
+    }
+    
+    .devices-table th:nth-child(5), /* 用途 */
+    .devices-table td:nth-child(5) {
+        width: 18%; /* 移动端减少用途列宽 */
+    }
+}
+
+@media (max-width: 480px) {
+    .devices-table {
+        font-size: 0.9rem;
+    }
+    
+    .devices-table th,
+    .devices-table td {
+        padding: 0.5rem;
+    }
+    
+    .modal-content {
+        margin: 1vh auto;
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.6s ease;
+}
+
+/* 状态指示器 */
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-online {
+    background: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+.status-offline {
+    background: #9e9e9e;
+    box-shadow: 0 0 0 2px rgba(158, 158, 158, 0.3);
+}
+
+.status-occupied {
+    background: #ff9800;
+    box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.3);
 }
